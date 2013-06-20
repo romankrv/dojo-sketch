@@ -3,27 +3,24 @@
   <head>
      <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
      <meta content="utf-8" http-equiv="encoding">
-     <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.6/dojo/dojo.xd.js" 
+     <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.5.1/dojo/dojo.xd.js" 
              type="text/javascript" 
              djConfig="isDebug: true, parseOnLoad: true">
      </script>
      <style> #info {width:100px; height:20px; border:1px red solid; padding:20px; margin-bottom:10px;}</style>
      <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/dojo/1.5.1/dijit/themes/claro/claro.css">
 
-    <script type="text/javascript">
+      <script type="text/javascript">
+        dojo.require("dijit.Tooltip");
+        dojo.require("dijit.form.Button");
+        var myButton = dojo.byId('up');
+        dojo.connect(dojo.byId('up'), 'onclick', function(o){
+          fo = dojo.byId('info');
+          console.dir(fo);
+          dojo.attr(fo.innerHTML="Additional info");                                        
+        })
 
-      dojo.require("dijit.Tooltip");
-      dojo.require("dijit.form.Button")
-      var myButton = dojo.byId('up');
-      dojo.connect(myButton, 'onclick', function(o){
-                                                     var info = dojo.byId('info');
-                                                     console.dir(info);
-                                                     dojo.attr(info.innerHTML="Additional info");
-                                        }
-      )
-
-    </script>
-
+      </script>
   </head>
 
 <body class="claro">
@@ -34,7 +31,6 @@
 
     <button dojoType="dijit.form.Button" id="up">Change information</button>
     <p dojoType="dijit.Tooltip" connectId="info"> * Start look here *</p>
-
 </body>
 </html>
 
