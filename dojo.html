@@ -3,34 +3,32 @@
   <head>
      <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
      <meta content="utf-8" http-equiv="encoding">
-     <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.5.1/dojo/dojo.xd.js" 
-             type="text/javascript" 
+     <script src="http://yandex.st/dojo/1.9.0/dojo/dojo.js"
+             type="text/javascript"
              djConfig="isDebug: true, parseOnLoad: true">
      </script>
      <style> #info {width:100px; height:20px; border:1px red solid; padding:20px; margin-bottom:10px;}</style>
-     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/dojo/1.5.1/dijit/themes/claro/claro.css">
+     <link rel="stylesheet" type="text/css" href="http://yandex.st/dojo/1.9.1/dijit/themes/claro/claro.css">
 
       <script type="text/javascript">
-        dojo.require("dijit.Tooltip");
-        dojo.require("dijit.form.Button");
-        var myButton = dojo.byId('up');
-        dojo.connect(dojo.byId('up'), 'onclick', function(o){
-          fo = dojo.byId('info');
-          console.dir(fo);
-          dojo.attr(fo.innerHTML="Additional info");                                        
-        })
-
+        require(["dojo/dom",
+                  "dojo/dom-attr", 
+                  "dojo/on",
+                  "dijit/Tooltip",
+                  "dijit/form/Button",
+                  "dojo/domReady!"], function(dom, domAttr, on){
+          on(dom.byId('up'), 'onclick', function(o){
+            fo = dom.byId('info');
+            console.dir(fo);
+            domAttr.get(fo.innerHTML="Additional info");
+          });
+        });
       </script>
   </head>
 
 <body class="claro">
-
-    <div id="info">
-      Main  information
-    </div>
-
-    <button dojoType="dijit.form.Button" id="up">Change information</button>
-    <p dojoType="dijit.Tooltip" connectId="info"> * Start look here *</p>
+  <div id="info">Main information</div>
+  <button data-dojo-type="dijit/form/Button" id="up">Change information</button>
+  <p data-dojo-type="dijit/Tooltip" connectId="info"> * Start look here *</p>
 </body>
 </html>
-
